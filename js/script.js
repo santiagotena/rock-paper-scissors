@@ -57,8 +57,10 @@ function game(){
     let scoreComputer = 0;
 
     for (let i = 0; i < 5; i++){
+        //Player and computer selection
         playerSelection = window.prompt("Select your weapon.", "Rock, paper or scissors");
         let computerSelection = computerPlay();
+        //Play a round of the game
         let round = playRound(playerSelection, computerSelection);
         //Distriubute the round information
         let message = round[0];
@@ -84,12 +86,5 @@ function game(){
         } else if (scoreComputer === 3){
             return "Computer wins!";
         }
-    }
-
-    //Final veredict
-    if (scorePlayer > scoreComputer){
-        return "Player wins!";
-    } else if (scorePlayer < scoreComputer){
-        return "Computer wins!";
     }
 }
