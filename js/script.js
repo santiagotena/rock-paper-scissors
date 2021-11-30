@@ -13,13 +13,15 @@ function playRound(playerSelection, computerSelection){
     let outcome = "";
     let playersDraw = false;
     let playerWins = true;
+    let message = "";
     let message1 = "";
     let message2 = "";
 
     //Draw condition
     if (playerSelection === computerSelection){
         playersDraw = true;
-        return outcome = ["It is a Draw.", playersDraw, playerWins];
+        message = "It is a Draw.";
+        return outcome = [message, playersDraw, playerWins];
     }
 
     //Player loses conditions
@@ -32,7 +34,7 @@ function playRound(playerSelection, computerSelection){
     }
 
     //Message of winner
-    if (playerWins === true){
+    if (playerWins){
         message1 = "You win! ";
     } else {
         message1 = "You lose! ";
@@ -43,16 +45,17 @@ function playRound(playerSelection, computerSelection){
         message2 = "Rock beats scissors.";
     } else if ((playerSelection === "paper" || computerSelection === "paper") && (playerSelection === "rock" || computerSelection === "rock")){
         message2 = "Paper beats rock.";
-    } else /*if ((playerSelection === "scissors" || computerSelection === "scissors") && (playerSelection === "paper" || computerSelection === "paper"))*/{
+    } else if ((playerSelection === "scissors" || computerSelection === "scissors") && (playerSelection === "paper" || computerSelection === "paper")){
         message2 = "Scissors beats paper.";
     }
 
-    const message = message1 + message2;
+    message = message1 + message2;
     return [message, playersDraw, playerWins];
 }
 
 //Create a best out of 5 set of rounds
 function game(){
+    //Set starting scores
     let scorePlayer = 0;
     let scoreComputer = 0;
 
