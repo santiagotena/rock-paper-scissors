@@ -19,7 +19,7 @@ function playRound(playerSelection, computerSelection){
     //Draw condition
     if (playerSelection === computerSelection){
         playersDraw = true;
-        return outcome = ["It is a Draw.", playersDraw, playerWins]
+        return outcome = ["It is a Draw.", playersDraw, playerWins];
     }
 
     //Player loses conditions
@@ -33,9 +33,9 @@ function playRound(playerSelection, computerSelection){
 
     //Message of winner
     if (playerWins === true){
-        message1 = "You win! "
+        message1 = "You win! ";
     } else {
-        message1 = "You lose! "
+        message1 = "You lose! ";
     }
 
     //Message for winning conditions
@@ -47,8 +47,8 @@ function playRound(playerSelection, computerSelection){
         message2 = "Scissors beats paper.";
     }
 
-    const message = message1 + message2
-    return [message, playersDraw, playerWins]
+    const message = message1 + message2;
+    return [message, playersDraw, playerWins];
 }
 
 //Create a best out of 5 set of rounds
@@ -56,34 +56,31 @@ function game(){
     let scorePlayer = 0;
     let scoreComputer = 0;
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 5; i++){
         playerSelection = window.prompt("Select your weapon.", "Rock, paper or scissors");
         let computerSelection = computerPlay();
-        let round = playRound(playerSelection, computerSelection)
+        let round = playRound(playerSelection, computerSelection);
+        //Distriubute the round information
+        let message = round[0];
+        let playersDraw = round[1];
+        let playerWins = round[2];
         //Announce the winner
-        console.log(round[0])
+        console.log(message);
         //Increase the score
-        if (round[1] === false){
-            if (round[2]){
-                scorePlayer++
+        if (playersDraw === false){
+            if (playerWins){
+                scorePlayer++;
             } else {
-                scoreComputer++
+                scoreComputer++;
             }
         }
     }
-
+    //Final veredict
     if (scorePlayer > scoreComputer){
-        return "Player wins!"
+        return "Player wins!";
     } else if (scorePlayer < scoreComputer){
-        return "Computer wins!"
+        return "Computer wins!";
     } else {
-        return "This is a draw."
+        return "This is a draw.";
     }
-
 }
-
-/*
-const playerSelection = "roCk";
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
-*/
