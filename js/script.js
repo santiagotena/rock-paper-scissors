@@ -41,11 +41,14 @@ function playRound(playerSelection, computerSelection){
     }
 
     //Message for winning conditions
-    if ((playerSelection === "rock" || computerSelection === "rock") && (playerSelection === "scissors" || computerSelection === "scissors")){
+    if ((playerSelection === "rock" || computerSelection === "rock") 
+            && (playerSelection === "scissors" || computerSelection === "scissors")){
         message2 = "Rock beats scissors.";
-    } else if ((playerSelection === "paper" || computerSelection === "paper") && (playerSelection === "rock" || computerSelection === "rock")){
+    } else if ((playerSelection === "paper" || computerSelection === "paper") 
+            && (playerSelection === "rock" || computerSelection === "rock")){
         message2 = "Paper beats rock.";
-    } else if ((playerSelection === "scissors" || computerSelection === "scissors") && (playerSelection === "paper" || computerSelection === "paper")){
+    } else if ((playerSelection === "scissors" || computerSelection === "scissors") 
+            && (playerSelection === "paper" || computerSelection === "paper")){
         message2 = "Scissors beats paper.";
     }
 
@@ -65,12 +68,13 @@ function game(){
         let computerSelection = computerPlay();
         //Play a round of the game
         let round = playRound(playerSelection, computerSelection);
-        //Distriubute the round information
+        //Distribute the outcome information
         let message = round[0];
         let playersDraw = round[1];
         let playerWins = round[2];
-        //Announce the winner
+        //Announce the round outcome
         console.log(message);
+
         //Draw condition is met
         if (playersDraw){
             i--
@@ -83,7 +87,7 @@ function game(){
                 scoreComputer++;
             }
         }
-        //Score reaches 3 veredict
+        //When score reaches 3 declare overall winner
         if (scorePlayer === 3){
             return "Player wins!";
         } else if (scoreComputer === 3){
