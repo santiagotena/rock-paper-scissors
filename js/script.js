@@ -66,6 +66,10 @@ function game(){
         let playerWins = round[2];
         //Announce the winner
         console.log(message);
+        //Draw condition is met
+        if (playersDraw){
+            i--
+        }
         //Increase the score
         if (playersDraw === false){
             if (playerWins){
@@ -74,13 +78,18 @@ function game(){
                 scoreComputer++;
             }
         }
+        //Score reaches 3 veredict
+        if (scorePlayer === 3){
+            return "Player wins!";
+        } else if (scoreComputer === 3){
+            return "Computer wins!";
+        }
     }
+
     //Final veredict
     if (scorePlayer > scoreComputer){
         return "Player wins!";
     } else if (scorePlayer < scoreComputer){
         return "Computer wins!";
-    } else {
-        return "This is a draw.";
     }
 }
