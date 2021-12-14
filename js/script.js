@@ -56,6 +56,31 @@ function playRound(playerSelection, computerSelection){
     return [message, playersDraw, playerWins];
 }
 
+//Event listener
+const rockBtn = document.querySelector('#rock');
+rockBtn.addEventListener('click', () => {
+    let playerSelection = "rock";
+    let computerSelection = computerPlay();
+    let round = playRound(playerSelection, computerSelection);
+    console.log(round);
+});
+
+const paperBtn = document.querySelector('#paper');
+paperBtn.addEventListener('click', () => {
+    let playerSelection = "paper";
+    let computerSelection = computerPlay();
+    let round = playRound(playerSelection, computerSelection);
+    console.log(round);
+});
+
+const scissorsBtn = document.querySelector('#scissors');
+scissorsBtn.addEventListener('click', () => {
+    let playerSelection = "scissors";
+    let computerSelection = computerPlay();
+    let round = playRound(playerSelection, computerSelection);
+    console.log(round);
+});
+
 //Create a best out of 5 set of rounds
 function game(){
     //Set starting scores
