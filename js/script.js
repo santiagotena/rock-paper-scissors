@@ -1,3 +1,8 @@
+//Set starting scores
+let scorePlayer = 0;
+let scoreComputer = 0;
+
+
 //Computer's selection
 function computerPlay() {
     const options = ["rock", "paper","scissors"];
@@ -56,67 +61,92 @@ function playRound(playerSelection, computerSelection){
     return [message, playersDraw, playerWins];
 }
 
-//Event listener
+//DOM modification function
+function domModify(playerSelection, computerSelection){
+
+    //Reset condition. Allows smooth reloading
+    if (scorePlayer === 3 || scoreComputer == 3){
+        return
+    }
+
+    //Play a round of the game
+    let round = playRound(playerSelection, computerSelection);
+    //console.log(round);
+
+    //Distribute the outcome information and announce it
+    let message = round[0];
+    let playersDraw = round[1];
+    let playerWins = round[2];
+
+    let roundResult = document.querySelector('#round-winner');
+    roundResult.textContent = `${message}`;
+
+    //Draw condition is met
+    if (playersDraw){
+        return
+    }
+
+    //Increase the score
+    if (playersDraw === false){
+        if (playerWins){
+            scorePlayer++;
+        } else {
+            scoreComputer++;
+        }
+    }
+
+    let humanScore = document.querySelector('#human-score');
+    humanScore.textContent = `${scorePlayer}`;
+
+    let computerScore = document.querySelector('#computer-score');
+    computerScore.textContent = `${scoreComputer}`;
+
+    //When score reaches 3 declare overall winner
+    if (scorePlayer === 3){
+        let verdict = "Player wins!";
+        let roundResult = document.querySelector('#round-winner');
+        roundResult.textContent = `${verdict}`;
+
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach((button) => {
+            button.addEventListener('click', () => {
+                location.reload();
+            });
+        });
+
+    } else if (scoreComputer === 3){
+        let verdict = "Computer wins!";
+        let roundResult = document.querySelector('#round-winner');
+        roundResult.textContent = `${verdict}`;
+
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach((button) => {
+            button.addEventListener('click', () => {
+                location.reload();
+            });
+        });
+    }
+
+}
+
+//Event listeners
 const rockBtn = document.querySelector('#rock');
 rockBtn.addEventListener('click', () => {
     let playerSelection = "rock";
     let computerSelection = computerPlay();
-    let round = playRound(playerSelection, computerSelection);
-    console.log(round);
+    domModify(playerSelection, computerSelection);
 });
 
 const paperBtn = document.querySelector('#paper');
 paperBtn.addEventListener('click', () => {
     let playerSelection = "paper";
     let computerSelection = computerPlay();
-    let round = playRound(playerSelection, computerSelection);
-    console.log(round);
+    domModify(playerSelection, computerSelection);
 });
 
 const scissorsBtn = document.querySelector('#scissors');
 scissorsBtn.addEventListener('click', () => {
     let playerSelection = "scissors";
     let computerSelection = computerPlay();
-    let round = playRound(playerSelection, computerSelection);
-    console.log(round);
+    domModify(playerSelection, computerSelection);
 });
-
-//Create a best out of 5 set of rounds
-function game(){
-    //Set starting scores
-    let scorePlayer = 0;
-    let scoreComputer = 0;
-
-    for (let i = 0; i < 5; i++){
-        //Player and computer selection
-        playerSelection = window.prompt("Select your weapon.", "Rock, paper or scissors");
-        let computerSelection = computerPlay();
-        //Play a round of the game
-        let round = playRound(playerSelection, computerSelection);
-        //Distribute the outcome information
-        let message = round[0];
-        let playersDraw = round[1];
-        let playerWins = round[2];
-        //Announce the round outcome
-        console.log(message);
-
-        //Draw condition is met
-        if (playersDraw){
-            i--
-        }
-        //Increase the score
-        if (playersDraw === false){
-            if (playerWins){
-                scorePlayer++;
-            } else {
-                scoreComputer++;
-            }
-        }
-        //When score reaches 3 declare overall winner
-        if (scorePlayer === 3){
-            return "Player wins!";
-        } else if (scoreComputer === 3){
-            return "Computer wins!";
-        }
-    }
-}

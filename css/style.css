@@ -35,8 +35,8 @@ button{
     justify-content: space-evenly;
     align-items: center;
 }
-.human-score,
-.computer-score{
+.human,
+.computer{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
